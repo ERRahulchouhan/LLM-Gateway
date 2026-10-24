@@ -1,0 +1,26 @@
+services:
+  apisix:
+    build:
+      context: .
+      args:
+        APISIX_IMAGE: ${APISIX_IMAGE:-apache/apisix:3.14.0-debian}
+    image: selfhosted-apisix:local
+    restart: unless-stopped
+    init: true
+    security_opt:
+      - no-new-privileges:true
+    cpus: 1.0
+    mem_limit: 1g
+    stop_grace_period: 30s
+    ports:
+      - "127.0.0.1:9082:9080"
+    environment:
+      APISIX_GATEWAY_KEY: ${APISIX_GATEWAY_KEY:?Set APISIX_GATEWAY_KEY in .env}
+      OPENAI_API_KEY: ${OPENAI_API_KEY:?Set OPENAI_API_KEY in .env}
+    volumes:
+      - ./config.yaml:/usr/local/apisix/conf/config.yaml:ro
+      - ./apisix.yaml:/usr/local/apisix/conf/apisix.yaml:ro
+      - apisix_logs:/usr/local/apisix/logs
+
+volumes:
+  apisix_logs:

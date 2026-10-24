@@ -1,0 +1,10 @@
+services:
+  portkey:
+    build:
+      context: .
+      args:
+        PORTKEY_IMAGE: ${PORTKEY_IMAGE:-portkeyai/gateway:latest}
+    image: selfhosted-portkey:local
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:8788:8787"

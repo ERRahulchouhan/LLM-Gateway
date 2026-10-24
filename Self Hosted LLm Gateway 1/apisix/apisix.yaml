@@ -1,0 +1,25 @@
+consumers:
+  - username: gateway-client
+    plugins:
+      key-auth:
+        key: "${{APISIX_GATEWAY_KEY}}"
+
+routes:
+  - id: openai-chat
+    uri: /v1/*
+    methods:
+      - GET
+      - POST
+    plugins:
+      key-auth: {}
+      proxy-rewrite:
+        headers:
+          Authorization: "Bearer ${{OPENAI_API_KEY}}"
+    upstream:
+      type: roundrobin
+      nodes:
+        "api.openai.com:443": 1
+      scheme: https
+      pass_host: node
+
+#END

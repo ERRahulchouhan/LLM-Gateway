@@ -1,0 +1,15 @@
+services:
+  bifrost:
+    build:
+      context: .
+      args:
+        BIFROST_IMAGE: ${BIFROST_IMAGE:-maximhq/bifrost:latest}
+    image: selfhosted-bifrost:local
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:8080:8080"
+    volumes:
+      - bifrost_data:/app/data
+
+volumes:
+  bifrost_data:

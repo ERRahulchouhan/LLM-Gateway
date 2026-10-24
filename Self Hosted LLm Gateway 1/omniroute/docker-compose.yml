@@ -1,0 +1,15 @@
+services:
+  omniroute:
+    build:
+      context: .
+      args:
+        OMNIROUTE_IMAGE: ${OMNIROUTE_IMAGE:-diegosouzapw/omniroute:latest}
+    image: selfhosted-omniroute:local
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:20128:20128"
+    volumes:
+      - omniroute_data:/app/data
+
+volumes:
+  omniroute_data:

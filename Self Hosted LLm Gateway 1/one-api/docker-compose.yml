@@ -1,0 +1,21 @@
+services:
+  one-api:
+    build:
+      context: .
+      args:
+        ONE_API_IMAGE: ${ONE_API_IMAGE:-justsong/one-api:latest}
+    image: selfhosted-one-api:local
+    restart: unless-stopped
+    command: ["--log-dir", "/app/logs"]
+    ports:
+      - "127.0.0.1:3002:3000"
+    volumes:
+      - one_api_data:/data
+      - one_api_logs:/app/logs
+    environment:
+      SESSION_SECRET: ${SESSION_SECRET:?Set SESSION_SECRET in .env}
+      TZ: ${TZ:-UTC}
+
+volumes:
+  one_api_data:
+  one_api_logs:
