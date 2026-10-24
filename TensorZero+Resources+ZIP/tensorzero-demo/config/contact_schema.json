@@ -1,0 +1,33 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "Full name of the contact"
+    },
+    "email": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "Email address"
+    },
+    "phone": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "Phone number"
+    }
+  },
+  "required": [
+    "name",
+    "email",
+    "phone"
+  ],
+  "additionalProperties": false
+}

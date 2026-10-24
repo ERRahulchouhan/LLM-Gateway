@@ -1,0 +1,54 @@
+# ================================================================
+# tensorzero.toml -- Module 4: A/B Testing
+# ================================================================
+
+
+# ── Previous functions (kept) ────────────────────────────────────
+
+[functions.chat]
+type = "chat"
+
+[functions.chat.variants.gpt_mini]
+type  = "chat_completion"
+model = "openai::gpt-4o-mini"
+
+
+# ================================================================
+# MODULE 4 -- METRICS
+# Metrics define what you are measuring.
+# You must define metrics before sending feedback.
+# ================================================================
+
+# Boolean metric: simple thumbs up / thumbs down
+[metrics.thumbs_up]
+type     = "boolean"
+level    = "inference"
+optimize = "max"
+
+# Float metric: quality score between 0.0 and 1.0
+[metrics.response_quality]
+type     = "float"
+level    = "inference"
+optimize = "max"
+
+
+# ================================================================
+# MODULE 4 -- A/B TEST FUNCTION
+# chat_ab: same task, two different implementations.
+# weight = 0.5 means 50% of traffic goes to each variant.
+# ================================================================
+
+[functions.chat_ab]
+type = "chat"
+
+# Variant A: OpenAI gpt-4o-mini
+[functions.chat_ab.variants.gpt_variant]
+type   = "chat_completion"
+model  = "openai::gpt-4o-mini"
+weight = 0.8
+
+# Variant B: Groq Llama-3.1-8B
+[functions.chat_ab.variants.groq_variant]
+type   = "chat_completion"
+model  = "groq::openai/gpt-oss-120b"
+weight = 0.2

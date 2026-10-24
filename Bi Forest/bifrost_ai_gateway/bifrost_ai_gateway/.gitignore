@@ -1,0 +1,19 @@
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+
+# Virtual environments
+.venv
+
+bifrostenv
+
+# Environment variables (contains API keys)
+.env
+
+# Notebook checkpoint files
+.ipynb_checkpoints/
+

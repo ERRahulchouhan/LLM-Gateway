@@ -1,0 +1,14 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "timezone": {
+      "type": "string",
+      "description": "IANA timezone name e.g. America/New_York, Asia/Kolkata, UTC"
+    }
+  },
+  "required": [
+    "timezone"
+  ],
+  "additionalProperties": false
+}

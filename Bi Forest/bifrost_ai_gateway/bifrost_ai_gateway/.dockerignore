@@ -1,0 +1,22 @@
+# Python virtual environments
+.venv/
+venv/
+__pycache__/
+*.pyc
+
+# Git and editor metadata
+.git/
+.gitignore
+.vscode/
+
+# Local environment files
+.env
+.env.*
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Project docs and notebooks not needed in the Docker image
+README.md
+docs/
+experiment.ipynb
